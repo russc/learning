@@ -1,22 +1,34 @@
 const measures = music['score-partwise'].part.measure;
-let pitches = [].sort();
+let pitches = [];
 
-function combine(step, octave){
-    
-    if(!pitches.includes(step + octave)){
-        pitches.push(step + octave)    
-    }
+function rhythmData(note) {
+	if (note.rest) {
+
+	}
 }
 
+function pitchData(step, octave) {
+	let pitch = step + octave;
+	if (!pitches.includes(pitch)) {
+		pitches.push(pitch);
+	}
+}
+
+
 measures.map(measure => measure.note.map(note => {
-    if(note.pitch !== undefined){
-        const  { step, octave } = note.pitch;
-        
-        combine(step, octave);
-    }
+	console.table(note);
+	// POPULATE RHYTHMS OBJECT
+	rhythmData(note);
+
+	// POPULATE PITCHES ARRAY
+	if (note.pitch !== undefined) {
+		pitchData(note.pitch.step, note.pitch.octave);
+	}
 }));
 
-console.log(pitches.sort());
+
+
+console.table(pitches.sort());
 
 
 

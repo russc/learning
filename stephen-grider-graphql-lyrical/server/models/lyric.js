@@ -10,7 +10,7 @@ const LyricSchema = new Schema({
   content: { type: String }
 });
 
-LyricSchema.statics.like = function(id) {
+LyricSchema.statics.like = function (id) {
   const Lyric = mongoose.model('lyric');
 
   return Lyric.findById(id)
