@@ -1,2 +1,3 @@
 # Lyrical-GraphQL
-Starter project from a GraphQL course on Udemy.com
+Tutorial App from Stephen Grider's Udemy course
+https://www.udemy.com/graphql-with-react-course/learn/v4/overview
