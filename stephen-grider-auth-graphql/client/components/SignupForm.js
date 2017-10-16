@@ -3,6 +3,7 @@ import AuthForm from './AuthForm';
 import { graphql } from 'react-apollo';
 import mutation from '../mutations/Signup';
 import query from '../queries/CurrentUser';
+import { hashHistory } from 'react-router';
 
 class SignupForm extends Component {
   constructor(props) {
@@ -10,6 +11,14 @@ class SignupForm extends Component {
 
     this.state = { errors: [] };
 
+  }
+  componentWillUpdate(nextProps) {
+    // this.props is the old set of props
+    // nextProps is the next set of props 
+    if (!this.props.data.user && nextProps.data.user) {
+      // redirect to dashboard
+      hashHistory.push('/dashboard');
+    }
   }
 
   onSubmit(email, password) {
@@ -34,4 +43,8 @@ class SignupForm extends Component {
   };
 
 }
-export default graphql(mutation)(SignupForm);
+
+// the order of queries here doesn't matter
+export default graphql(query)(
+  graphql(mutation)(SignupForm)
+);
